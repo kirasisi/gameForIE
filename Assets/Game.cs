@@ -9,10 +9,13 @@ public class Game : MonoBehaviour {
     public static int pointAmount;
     int isTreeSold;
     public GameObject tree;
+    public AndroidJavaObject passPoint;
 
     // Use this for initialization
     void Start()
     {
+        passPoint = new AndroidJavaObject("ff.ecochallenges.game.pointTransfer");
+        passPoint.Call("pointPass");
         pointAmount = PlayerPrefs.GetInt("treeAmount");
         isTreeSold = PlayerPrefs.GetInt("IsTreeSold");
 
@@ -36,5 +39,9 @@ public class Game : MonoBehaviour {
     public void goBackApp()
     {
         Application.Quit();
+    }
+    public void OnAccessToken(string accessToken)
+    {
+        Debug.Log("Message Received!!!! :" + accessToken);
     }
 }
