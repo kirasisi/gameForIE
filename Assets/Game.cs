@@ -15,10 +15,11 @@ public class Game : MonoBehaviour {
     void Start()
     {
         passPoint = new AndroidJavaObject("ff.ecochallenges.game.pointTransfer");
-        passPoint.Call("pointPass");
-        pointAmount = PlayerPrefs.GetInt("treeAmount");
+        
+        //pointAmount = PlayerPrefs.GetInt("treeAmount");
+        pointText.text = passPoint.Call<int>("pointPass").ToString();
         isTreeSold = PlayerPrefs.GetInt("IsTreeSold");
-
+        pointAmount = passPoint.Call<int>("pointPass");
         if (isTreeSold == 1)
             tree.SetActive(true);
         else
@@ -28,7 +29,7 @@ public class Game : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //pointText.text =  pointAmount.ToString() ;
+        pointText.text = passPoint.Call<int>("pointPass").ToString();
     }
 
     public void gotoShop()
@@ -40,8 +41,5 @@ public class Game : MonoBehaviour {
     {
         Application.Quit();
     }
-    public void OnAccessToken(string accessToken)
-    {
-        Debug.Log("Message Received!!!! :" + accessToken);
-    }
+   
 }

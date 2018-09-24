@@ -17,7 +17,7 @@ public class shop : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        pointAmount = PlayerPrefs.GetInt("point");
+        pointAmount = PlayerPrefs.GetInt("pointAmount");
     }
 
     // Update is called once per frame

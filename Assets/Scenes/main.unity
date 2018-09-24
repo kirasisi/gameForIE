@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528b24ded4331324e88bec1fee3c0ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointText: {fileID: 0}
+  pointText: {fileID: 404938790}
   tree: {fileID: 1280899478}
 --- !u!4 &1487814933
 Transform:
