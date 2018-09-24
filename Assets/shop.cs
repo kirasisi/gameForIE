@@ -8,11 +8,13 @@ public class shop : MonoBehaviour {
 
     int pointAmount;
     int isTreeSold;
+   
 
     public Text pointText;
     public Text treeGreenPrice;
-
+    public Text noticeText;
     public Button BuyBtn;
+    public AndroidJavaObject updatePoint;
 
     // Use this for initialization
     void Start()
@@ -28,25 +30,29 @@ public class shop : MonoBehaviour {
 
         isTreeSold = PlayerPrefs.GetInt("IsTreeSold");
 
-        //if (pointAmount >= 30 && isTreeSold == 0)
-            //BuyBtn.interactable = true;
-        //else
-           //BuyBtn.interactable = false;
+       
     }
 
     public void buyTree()
     {
-        //pointAmount -= 5;
-        PlayerPrefs.SetInt("IsTreeSold", 1);
-        //treeGreenPrice.text = "Sold!";
-        //BuyBtn.gameObject.SetActive(false);
-    
+        if (pointAmount<30)
+        {
+            noticeText.text = "You don't have enough point";
+
+        }
+        else
+        {
+            pointAmount -= 30;
+            PlayerPrefs.SetInt("IsTreeSold", 1);
+          
+        }
+        //updatePointAmount();
 
     }
 
     public void exitShop()
     {
-        PlayerPrefs.SetInt("Points", pointAmount);
+        PlayerPrefs.SetInt("pointAmount", pointAmount);
         SceneManager.LoadScene("main");
     }
 
@@ -56,5 +62,11 @@ public class shop : MonoBehaviour {
         BuyBtn.gameObject.SetActive(true);
         //treeGreenPrice.text = "30 Points";
         PlayerPrefs.DeleteAll();
+    }
+    public void updatePointAmount()
+    {
+        updatePoint = new AndroidJavaObject("ff.ecochallenges.game.pointTransfer");
+        updatePoint.Call("receivePoint", pointAmount);
+
     }
 }

@@ -16,8 +16,8 @@ public class Game : MonoBehaviour {
     {
         passPoint = new AndroidJavaObject("ff.ecochallenges.game.pointTransfer");
         
-        //pointAmount = PlayerPrefs.GetInt("treeAmount");
-        pointText.text = passPoint.Call<int>("pointPass").ToString();
+        pointAmount = PlayerPrefs.GetInt("pointAmount");
+        //pointText.text = passPoint.Call<int>("pointPass").ToString();
         isTreeSold = PlayerPrefs.GetInt("IsTreeSold");
         pointAmount = passPoint.Call<int>("pointPass");
         if (isTreeSold == 1)
