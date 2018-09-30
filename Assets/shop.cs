@@ -9,6 +9,7 @@ public class shop : MonoBehaviour {
     int pointAmount;
     int isTreeSold;
     int treeNum;
+  
 
 
     public Text pointText;
@@ -87,4 +88,5 @@ public class shop : MonoBehaviour {
         updatePoint.Call("receivePoint", pointAmount);
 
     }
+
 }
