@@ -8,18 +8,23 @@ public class shop : MonoBehaviour {
 
     int pointAmount;
     int isTreeSold;
-   
+    int treeNum;
+
 
     public Text pointText;
     public Text treeGreenPrice;
     public Text noticeText;
     public Button BuyBtn;
     public AndroidJavaObject updatePoint;
+    public Button test;
 
     // Use this for initialization
     void Start()
     {
         pointAmount = PlayerPrefs.GetInt("pointAmount");
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        treeNum = 0;
+        test.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,13 +42,25 @@ public class shop : MonoBehaviour {
     {
         if (pointAmount<30)
         {
-            noticeText.text = "You don't have enough point";
+        noticeText.text = "You don't have enough point";
 
         }
         else
         {
-            pointAmount -= 30;
-            PlayerPrefs.SetInt("IsTreeSold", 1);
+
+        pointAmount -= 30;
+        treeNum = treeNum + 1;
+
+        if (PlayerPrefs.GetInt("count") >= 1)
+        {
+            PlayerPrefs.SetInt("IsTreeSold", PlayerPrefs.GetInt("count") + treeNum);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("IsTreeSold", treeNum);
+        }
+        
+            
           
         }
         //updatePointAmount();
@@ -54,6 +71,7 @@ public class shop : MonoBehaviour {
     {
         PlayerPrefs.SetInt("pointAmount", pointAmount);
         SceneManager.LoadScene("main");
+        
     }
 
     public void resetPlayerPrefs()
