@@ -15,6 +15,7 @@ public class shop : MonoBehaviour {
     public Text pointText;
     public Text treeGreenPrice;
     public Text noticeText;
+    public Text noticeText2;
     public Button BuyBtn;
     public AndroidJavaObject updatePoint;
     public Button test;
@@ -43,8 +44,8 @@ public class shop : MonoBehaviour {
     {
         if (pointAmount<30)
         {
-        noticeText.text = "You don't have enough point";
-
+        noticeText.text = "You don't have enough points";
+        noticeText2.text = "Go back and complete more challenges!";
         }
         else
         {
